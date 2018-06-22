@@ -2,7 +2,7 @@ const express = require('express');
 const hbs=require('hbs');
 const fs=require("fs");
 
-
+const port = process.env.PORT || 3000;
 var app =express();
 hbs.registerPartials(__dirname + '/views/partials')
 
@@ -21,13 +21,13 @@ app.use((req,res,next)=>{
     });
     next();
 });
-app.use((req,res,next)=>{
+/*app.use((req,res,next)=>{
     res.render('maintanence.hbs',{
         pageTitle: 'site under maintanence'
 
     });
 
-});
+});*/
 
 app.use(express.static(__dirname + '/public'));
 
@@ -62,6 +62,6 @@ app.get('/bad',(req, res) => {
         errorMessage: 'Error Message'
     });
 });
-app.listen(3000, () =>{
-    console.log('server is up');
+app.listen(port, () =>{
+    console.log(`server is up on ${port}`);
 });
